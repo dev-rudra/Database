@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = db.query ("DRINK",
                     new String[] {"NAME", "DESCRIPTION", "IMAGE_RESOURCE_ID"},
                     "NAME = ? ",
-                    new String[] {"Filter"},
+                    new String[] {"Latte"},
                     null, null,null);
             if (cursor.moveToFirst()) {
                 mainView.setText("Latte's description is: " + cursor.getString(1));
