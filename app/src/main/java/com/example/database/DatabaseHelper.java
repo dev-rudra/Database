@@ -22,6 +22,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         updateMyDatabase(db, oldVersion, newVersion);
+
+
     }
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -30,14 +32,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + "NAME TEXT, "
                     + "DESCRIPTION TEXT, "
                     + "IMAGE_RESOURCE_ID INTEGER);");
+
             insertDrink(db, "Latte", "Espresso and steamed milk", 1);
             insertDrink(db, "Cappuccino", "Espresso, hot milk and steamed-milk foam",
                     2);
             insertDrink(db, "Filter", "Our best drip coffee", 3);
+            insertDrink(db, "Miller", "Japan's best pizza house.", 4);
+
         }
         if (oldVersion < 2) {
             db.execSQL("ALTER TABLE DRINK ADD COLUMN FAVORITE NUMERIC;");
         }
+
+        if(oldVersion < 3) {
+            db.execSQL("ALTER TABLE DRINK ADD COLUMN createdBy TEXT;");
+        }
+
     }
 
     private static void insertDrink(SQLiteDatabase db, String name,
